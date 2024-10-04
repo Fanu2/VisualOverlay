@@ -1,18 +1,29 @@
 .container {
   text-align: center;
   padding: 20px;
+  font-family: Arial, sans-serif; /* Set a default font for better readability */
 }
 
 .controls {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+  justify-content: center; /* Center items horizontally */
 }
 
-.fileInput,
-.textInput,
-.rangeInput,
-.numberInput,
-.colorInput {
+.controls .fileInput,
+.controls .textInput,
+.controls .rangeInput,
+.controls .numberInput,
+.controls .colorInput,
+.controls select { /* Added local context to select */
   margin: 10px;
+  padding: 10px; /* Increased padding for better touch targets */
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Added rounded corners */
+  width: calc(20% - 20px); /* Set width for input fields */
+  max-width: 200px; /* Set a max-width to maintain a consistent look */
+  box-sizing: border-box; /* Ensure padding and borders are included in the width */
 }
 
 .canvas {
@@ -22,6 +33,7 @@
   position: relative; /* Allow absolutely positioned children */
   margin: 0 auto; /* Center canvas */
   overflow: hidden; /* Prevent overflow */
+  background-color: #f9f9f9; /* Light background color for the canvas */
 }
 
 .overlayImage {
@@ -30,4 +42,100 @@
 
 .textOverlay {
   pointer-events: none; /* Disable interactions with the text overlay */
+}
+
+/* Button Styles */
+.button {
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.previewButton,
+.downloadButton {
+  background-color: #0070f3; /* Next.js blue */
+}
+
+.previewButton:hover,
+.downloadButton:hover {
+  background-color: #005bb5; /* Darken on hover */
+}
+
+/* Modal Styles */
+.previewModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensure it appears on top */
+  border-radius: 8px; /* Rounded corners for the modal */
+}
+
+.closeButton {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d9534f; /* Red color for close button */
+  color: white;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: #c9302c; /* Darken on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .controls .fileInput,
+  .controls .textInput,
+  .controls .rangeInput,
+  .controls .numberInput,
+  .controls .colorInput,
+  .controls select { /* Make sure select also takes full width */
+    width: 100%; /* Full width for small screens */
+  }
+
+  .controls {
+    flex-direction: column; /* Stack controls vertically */
+    align-items: center; /* Center items */
+  }
+
+  .canvas {
+    width: 100%; /* Make canvas responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* Reset Button Styles */
+.resetButton {
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336; /* Red color for reset button */
+  color: white;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background-color: #c62828; /* Darken on hover */
+}
+
+/* Text Input Styles */
+.textInput {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(40% - 20px); /* Wider input area for text */
+  height: 80px; /* Increased height for better typing area */
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
